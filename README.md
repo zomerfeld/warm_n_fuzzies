@@ -17,13 +17,14 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
 * Heat Pads - I'm using [Adafruit's](https://www.adafruit.com/product/1481)
 * An External Active GPS Antenna (and the correct connectors + adaptors for it) - you can buy Adafruit's or find something on eBay / Amazon
 * A 3.7 Battery to power the Photon (or a USB Bank)
-* A 7-12 High Capacity, High Drain battery pack to run the heating circuits (not a regular 9V)
-You'll need at least 7000mAh to get the heating pads to really heat up. You can use something like [this](http://a.co/99Ji5B1) or A couple of these [18650 Batteries](http://a.co/b3cm1pK)
+* A 7-12 High Capacity, High Drain battery pack – to run the heating circuits (not a regular 9V)
+  
+  You'll need at least 7000mAh to get the heating pads to really heat up. You can use something like [this](http://a.co/99Ji5B1) or A couple of these [18650 Batteries](http://a.co/b3cm1pK)
 
-***Make sure you buy ones with circuit protection! If they don't say they have it they don't and unprotected batteries of that sort have the potential to burst into fire or explode!***
+  ***Make sure you buy ones with circuit protection! If they don't say they have it they don't and unprotected batteries of that sort have the potential to burst into fire or explode!***
 
-You can swap some of these components with others, but it mightrequire a library or code tweak.
-You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
+  You can swap some of these components with others, but it mightrequire a library or code tweak.
+  You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
 
 ## Libraries 
 I have created this project using the Particle Web IDE and these libraries. They should all be added automatically with the 'project.properties' file, but in case this fails, you will need to add these libraries to your code, using the libraries tab. 
