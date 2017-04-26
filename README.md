@@ -12,13 +12,12 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
 
 ## Components
 * Particle Photon
-* A GPS Breakout - [Adafruit Ultimate GPS V3](https://www.adafruit.com/product/746)
-* A Compass Breakout - [LSM303DLHC](https://www.adafruit.com/product/1120)
-* Heat Pads - I'm using [Adafruit's](https://www.adafruit.com/product/1481)
-* An External Active GPS Antenna (and the correct connectors + adaptors for it) - you can buy Adafruit's or find something on eBay / Amazon
-* A 3.7 Battery to power the Photon (or a USB Bank)
-* A 7-12 High Capacity, High Drain battery pack – to run the heating circuits (not a regular 9V)
-  
+* ***A GPS Breakout*** - [Adafruit Ultimate GPS V3](https://www.adafruit.com/product/746)
+* ***A Compass Breakout*** - [LSM303DLHC](https://www.adafruit.com/product/1120)
+* ***Heating Pads*** - I'm using [Adafruit's](https://www.adafruit.com/product/1481)
+* An ***External Active GPS Antenna*** (and the correct connectors + adaptors for it) - you can buy Adafruit's or find something on eBay / Amazon
+* A ***power source for the Photon*** - either a 3.7v Lipo Battery, or a regular 5V USB Bank. 
+* A ***7-12V High Capacity, High Drain battery pack*** – to run the heating circuits (not a regular 9V)
   You'll need at least 7000mAh to get the heating pads to really heat up. You can use something like [this](http://a.co/99Ji5B1) or A couple of these [18650 Batteries](http://a.co/b3cm1pK)
 
   ***Make sure you buy ones with circuit protection! If they don't say they have it they don't and unprotected batteries of that sort have the potential to burst into fire or explode!***
@@ -34,6 +33,8 @@ I have created this project using the Particle Web IDE and these libraries. They
 
 ## Schematic
 ![Schematic](warm_schematic_v4.png)
+
+## Power
 
 ## Code Walkthrough
 
