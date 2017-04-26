@@ -57,7 +57,9 @@ I have created this project using the Particle Web IDE and these libraries. They
 * Important Functions
 
 ## Heating Circuit Tutorial
+<p align="center">
 ![Schematic](MyCircuit_HeatingPad.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/MyCircuit_HeatingPad.png" target="blank">Open in a new tab</a>
+</p>
 <br>
 
 ## Caveats and Important notes
