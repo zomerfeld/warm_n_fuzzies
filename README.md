@@ -1,6 +1,7 @@
 # Warm n Fuzzies
 
-Warm and Fuzzies is a un (unnecessary) wearable which heats up in the direction of your heart's desire - Home, Friend, Mecca / The Wailing Wall, or the nearest Starbucks.
+Warm and Fuzzies is an (unnecessary) wearable which **heats up in the direction of your heart's desire** - Home, Friend, Mecca / The Wailing Wall, or the nearest Starbucks.
+
 It uses Particle's controller, currently set up for the [Particle Photon](https://store.particle.io/collections/photon).
 
 #### Status
@@ -12,17 +13,17 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
 
 ## Components
 * Particle Photon
-* ***A GPS Breakout*** - [Adafruit Ultimate GPS V3](https://www.adafruit.com/product/746)
-* ***A Compass Breakout*** - [LSM303DLHC](https://www.adafruit.com/product/1120)
-* ***Heating Pads*** - I'm using [Adafruit's](https://www.adafruit.com/product/1481)
-* An ***External Active GPS Antenna*** (and the correct connectors + adaptors for it) - you can buy Adafruit's or find something on eBay / Amazon
-* A ***power source for the Photon*** - either a 3.7v Lipo Battery, or a regular 5V USB Bank. 
-* A ***7-12V High Capacity, High Drain battery pack*** – to run the heating circuits (not a regular 9V)
+* **A GPS Breakout** - [Adafruit Ultimate GPS V3](https://www.adafruit.com/product/746)
+* **A Compass Breakout** - [LSM303DLHC](https://www.adafruit.com/product/1120)
+* **Heating Pads** - I'm using [Adafruit's](https://www.adafruit.com/product/1481)
+* An **External Active GPS Antenna** (and the correct connectors + adaptors for it) - you can buy Adafruit's or find something on eBay / Amazon
+* A **power source for the Photon** - either a 3.7v Lipo Battery, or a regular 5V USB Bank. 
+* A **7-12V High Capacity, High Drain battery pack** – to run the heating circuits (not a regular 9V)
 
   You'll need at least 7000mAh to get the heating pads to really heat up. You can use something like [this](http://a.co/99Ji5B1) or A couple of these [18650 Batteries](http://a.co/b3cm1pK)
 
-  ***Make sure you buy ones with circuit protection! If they don't say they have it, they don't.  
-  Unprotected batteries of that sort have the potential to burst into fire or explode!***
+  :boom::boom::boom:  **Make sure you buy ones with circuit protection! If they don't say they have it, they don't.  
+  Unprotected batteries of that sort have the potential to burst into fire or explode!**
 
   You can swap some of these components with others, but it might require a library or code tweak.
   You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
@@ -34,14 +35,22 @@ I have created this project using the Particle Web IDE and these libraries. They
 * [Adafruit_LSM303_U](https://github.com/zomerfeld/Adafruit_LSM303_U) (1.0.8) by Adafruit's Kevin Townsend (ported by yours truly)  
 
 ## Schematic
-![Schematic](warm_schematic_v4.png)
-<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/warm_schematic_v4.png" target="blank">Open in a new tab</a>
+![Schematic](warm_schematic_v4.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/warm_schematic_v4.png" target="blank">Open in a new tab</a>
+
+
 
 ## Powering this Project
 
 ## Code Walkthrough
 
+## Heating Circuit Tutorial
+
 ## Caveats and Important notes
+* Compass orientation
+* Compass Math and Such - if you can fix it let me know 
+* GPS Antenna is necessary 
+
+
 
 #### Dashboard
 
