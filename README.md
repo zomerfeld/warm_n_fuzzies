@@ -18,11 +18,13 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
 * An ***External Active GPS Antenna*** (and the correct connectors + adaptors for it) - you can buy Adafruit's or find something on eBay / Amazon
 * A ***power source for the Photon*** - either a 3.7v Lipo Battery, or a regular 5V USB Bank. 
 * A ***7-12V High Capacity, High Drain battery pack*** – to run the heating circuits (not a regular 9V)
+
   You'll need at least 7000mAh to get the heating pads to really heat up. You can use something like [this](http://a.co/99Ji5B1) or A couple of these [18650 Batteries](http://a.co/b3cm1pK)
 
-  ***Make sure you buy ones with circuit protection! If they don't say they have it they don't and unprotected batteries of that sort have the potential to burst into fire or explode!***
+  ***Make sure you buy ones with circuit protection! If they don't say they have it, they don't.  
+  Unprotected batteries of that sort have the potential to burst into fire or explode!***
 
-  You can swap some of these components with others, but it mightrequire a library or code tweak.
+  You can swap some of these components with others, but it might require a library or code tweak.
   You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
 
 ## Libraries 
