@@ -1,6 +1,7 @@
 # Warm n Fuzzies
 
 Warm and Fuzzies is an (unnecessary) wearable which **heats up in the direction of your heart's desire** - Home, Friend, Mecca / The Wailing Wall, or the nearest Starbucks.
+![Illustration-Reaji](reaji_warm.jpg)
 
 It uses Particle's controller, currently set up for the [Particle Photon](https://store.particle.io/collections/photon).
 
@@ -28,20 +29,24 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
   You can swap some of these components with others, but it might require a library or code tweak.
   You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
 
-## Libraries 
+
+## Schematic
+![Schematic](warm_schematic_v4.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/warm_schematic_v4.png" target="blank">Open in a new tab</a>
+<br>
+
+## Powering this Project
+
+## Operation
+
+## Code Walkthrough
+### Libraries 
 I have created this project using the Particle Web IDE and these libraries. They should all be added automatically with the 'project.properties' file, but in case this fails, you will need to add these libraries to your code, using the libraries tab. 
 * Adafruit_Sensor (1.0.2)
 * [Particle-GPS](https://github.com/porrey/Particle-GPS) (1.0.4) by Daniel Porrey
 * [Adafruit_LSM303_U](https://github.com/zomerfeld/Adafruit_LSM303_U) (1.0.8) by Adafruit's Kevin Townsend (ported by yours truly)  
+<br>
 
-## Schematic
-![Schematic](warm_schematic_v4.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/warm_schematic_v4.png" target="blank">Open in a new tab</a>
-
-
-
-## Powering this Project
-
-## Code Walkthrough
+* Important Functions
 
 ## Heating Circuit Tutorial
 
@@ -52,7 +57,7 @@ I have created this project using the Particle Web IDE and these libraries. They
 
 
 
-#### Dashboard
+### Dashboard
 
 #### IFTTT Integration
 
