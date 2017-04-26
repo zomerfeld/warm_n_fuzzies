@@ -35,13 +35,13 @@ I have created this project using the Particle Web IDE and these libraries. They
 
 ## Schematic
 ![Schematic](warm_schematic_v4.png)
-{::nomarkdown}
 <a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/warm_schematic_v4.png" target="blank">Open in a new tab</a>
-{:/}
 
-## Power
+## Powering this Project
 
 ## Code Walkthrough
+
+## Caveats and Important notes
 
 #### Dashboard
 
