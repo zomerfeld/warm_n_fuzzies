@@ -38,8 +38,13 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
 <br>
 
 ## Powering this Project
+The diagram shows the allotment of bearing angles to heating pads. The Cardinal Directions (N/E/S/W) are not true magnetic directions, but based on the direction of the individual. "North" is pointing to the front. 
+![Compass](compass_nums2.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/compass_nums2.png" target="blank">Open in a new tab</a>
+<br>
+
 
 ## Operation
+
 
 ## Code Walkthrough
 ### Libraries 
