@@ -1,35 +1,34 @@
-# LSM_V3
+# Warm n Fuzzies
 
-A Particle project named LSM_V3
+Warm and Fuzzies is a un (unnecessary) wearable which heats up in the direction of your heart's desire - Home, Friend, Mecca / The Wailing Wall, or the nearest Starbucks.
+It uses Particle's controller, currently set up for the [Particle Photon](https://store.particle.io/collections/photon).
 
-## Welcome to your project!
+#### Status
 
-Every new Particle project is composed of 3 important elements that you'll see have been created in your project directory for LSM_V3.
+This project is still in Beta and I will update this page as we go along.
+If you have any questions about the code or the componenets, email me at noam@cca.edu.
 
-#### ```/src``` folder:  
-This is the source folder that contains the firmware files for your project. It should *not* be renamed. 
-Anything that is in this folder when you compile your project will be sent to our compile service and compiled into a firmware binary for the Particle device that you have targeted.
+An [Electron](https://store.particle.io/collections/electron) version coming soon. 
 
-If your application contains multiple files, they should all be included in the `src` folder. If your firmware depends on Particle libraries, those dependencies are specified in the `project.properties` file referenced below.
+## Components
+* Particle Photon
+* GPS Breakout Adafruit Ultimate GPS V3
+* A Compass Breakout - LSM303DLHC
+* Heat Pads - I'm using [Adafruit's](https://www.adafruit.com/product/1481)
 
-#### ```.ino``` file:
-This file is the firmware that will run as the primary application on your Particle device. It contains a `setup()` and `loop()` function, and can be written in Wiring or C/C++. For more information about using the Particle firmware API to create firmware for your Particle device, refer to the [Firmware Reference](https://docs.particle.io/reference/firmware/) section of the Particle documentation.
+You can swap these components, some will require a library or code tweak.
+You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
 
-#### ```project.properties``` file:  
-This is the file that specifies the name and version number of the libraries that your project depends on. Dependencies are added automatically to your `project.properties` file when you add a library to a project using the `particle library add` command in the CLI or add a library in the Desktop IDE.
+## Libraries 
+I have created this project using the Particle Web IDE and these libraries. They should all be added automatically with the 'project.properties' file, but in case this fails, you will need to add these libraries to your code, using the libraries tab. 
+* Adafruit_Sensor (1.0.2)
+* [Particle-GPS](https://github.com/porrey/Particle-GPS) (1.0.4) by Daniel Porrey
+* [Adafruit_LSM303_U](https://github.com/zomerfeld/Adafruit_LSM303_U) (1.0.8) by Adafruit's Kevin Townsend (ported by yours truly)  
 
-## Adding additional files to your project
+## Schematic
+![Schematic](warm_schematic_v4.png)
 
-#### Projects with multiple sources
-If you would like add additional files to your application, they should be added to the `/src` folder. All files in the `/src` folder will be sent to the Particle Cloud to produce a compiled binary.
+#### Dashboard
 
-#### Projects with external libraries
-If your project includes a library that has not been registered in the Particle libraries system, you should create a new folder named `/lib/<libraryname>/src` under `/<project dir>` and add the `.h` and `.cpp` files for your library there. All contents of the `/lib` folder and subfolders will also be sent to the Cloud for compilation.
+#### IFTTT Integration
 
-## Compiling your project
-
-When you're ready to compile your project, make sure you have the correct Particle device target selected and run `particle compile <platform>` in the CLI or click the Compile button in the Desktop IDE. The following files in your project folder will be sent to the compile service:
-
-- Everything in the `/src` folder, including your `.ino` application file
-- The `project.properties` file for your project
-- Any libraries stored under `lib/<libraryname>/src`
