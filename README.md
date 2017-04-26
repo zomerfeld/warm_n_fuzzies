@@ -1,7 +1,7 @@
 # Warm n Fuzzies
 
 Warm and Fuzzies is an (unnecessary) wearable which **heats up in the direction of your heart's desire** - Home, Friend, Mecca / The Wailing Wall, or the nearest Starbucks.
-![Illustration-Reaji](reaji_warm.jpg)
+![Illustration-Reaji](reaji_warm.jpg | width=400)
 
 It uses Particle's controller, currently set up for the [Particle Photon](https://store.particle.io/collections/photon).
 
