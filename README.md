@@ -52,7 +52,7 @@ Either on a breadboard, or on a protoboard. If you're brave - sew the components
 Make sure the particle device is powered separately (using the USB connector or the vin pin) than the heat pads. The Heatpads need to be powered by the big power supply, but the Particle can only take 5V through the USB, or 3.3v through the VIN pin. 
 Their GNDs need to be connected for switching the heatapd MOSFETs on and off. 
 ### Upload the code
-Either use the Particle Dev IDE with the entire file set from this github repository, or copy the contents of [src/warm.ino] to the [particle online IDE](https://build.particle.io/), and import the libraries specified below under [libraries](#libraries}
+Either use the Particle Dev IDE with the entire file set from this github repository, or copy the contents of [src/warm.ino] to the [particle online IDE](https://build.particle.io/), and import the libraries specified below under [libraries](#libraries).
 
 ## Operation
 The project is meant to be worn. Attach the heating pads to the inside of a shirt, a vest or a jacket, and wire them to the circuit so the pins align to the diagram below
@@ -66,7 +66,7 @@ Set up a destination using the Particle Function *SetTarget* on the [Particle Da
 
 
 ## Code Walkthrough
-### Libraries 
+### Libraries
 I have created this project using the Particle Web IDE and these libraries. They should all be added automatically with the 'project.properties' file, but in case this fails, you will need to add these libraries to your code, using the libraries tab. 
 * Adafruit_Sensor (1.0.2)
 * [Particle-GPS](https://github.com/porrey/Particle-GPS) (1.0.4) by Daniel Porrey
