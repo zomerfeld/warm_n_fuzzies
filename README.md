@@ -41,6 +41,9 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
 
   :boom::boom::boom:  **Make sure you buy 18650 batteries with circuit protection! If they don't say they have it, they don't.  
   Unprotected batteries of that sort have the potential to burst into fire or explode!**
+  
+For the Particle - use a separate power supply (like any USB 5V phone battery), or connect a 3.3V power source to the VIN pin. 
+You can also create a voltage regulator circuit to split the power supply to a nice clean 3.3v for the Photon, but make sure to test it before, and use a proper heatsink. This project gets pretty hot already! 
 
 ## Setup
 These instructions assume you have a basic knowledge of soldering, programming and a familiarity with the Particle IDE environment. If you're just beginning with Particle, I recommend you check out the [Getting Started guide](https://docs.particle.io/guide/getting-started/start/photon/), and build a few basic circuit first.
@@ -53,13 +56,35 @@ Make sure the particle device is powered separately (using the USB connector or 
 Their GNDs need to be connected for switching the heatapd MOSFETs on and off. 
 ### Upload the code
 Either use the Particle Dev IDE with the entire file set from this github repository, or copy the contents of [src/warm.ino] to the [particle online IDE](https://build.particle.io/), and import the libraries specified below under [libraries](#libraries).
+### Power the heatpads 
+Make sure you plug in the power supply for the heatpads last. The project boots up with heat on, so when you plug in the batteries, one of the heatpads should start heating up (there's a default destination programmed). 
+**Test it** - Check carefully with your fingers that:
+* Only one heatpad is heating up
+* That the batteries are not heating up
+* That the MOSFETS are not heating up.
+
+If any of the above is happening, unplug the batteries and check for shortcircuits or inverted components.
+
+There's also a Particle Function you can use to turn the power to the heating circuit off, called *toggleHeat*. Send a zero, or any other character to it to turn the heaters off temporarily.  
 
 ## Operation
-The project is meant to be worn. Attach the heating pads to the inside of a shirt, a vest or a jacket, and wire them to the circuit so the pins align to the diagram below
+The project is meant to be worn. Attach the heating pads to the inside of a shirt, a vest or a jacket, and wire them to the circuit so the pins align to the diagram below:
 
 The diagram shows the allotment of bearing angles to heating pads. The Cardinal Directions (N/E/S/W) are not true magnetic directions, but based on the direction of the individual. "North" is pointing to the front. 
 ![Compass](compass_nums2.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/compass_nums2.png" target="blank">Open in a new tab</a>
 <br>
+
+### Particle Functions
+Warm & Fuzzies is controlled using the functions and variables on [Particle Dashboard](https://console.particle.io/devices).
+![Dashboard](ParticleDashboard.png)
+#### Variables
+**Compass** - Shows you the compass heading in degrees. The compass heading is not 100% accurate (moves between 80-90% accuracy). If you know a solution to get a better compass reading (and I've tried a lot of different compasses breakouts), email me. 
+**Latitude** & **Longitude** - These show the GPS information in Lon and Lat, recieved from the GPS. If they show 0, it means the GPS hasn't found the satelites yet. 
+** Location **  - Shows your GPS Location in Decimal Degrees (easier to work in, especially on Google Maps). 
+** heater ** - Shows the active heater from the heater array. 
+** Bearing ** The compass angle between you and the target location, in degrees.
+** Cardinal** - Shows the cardinal direction between you and the target location. Always shows it with 2 letters, so NNE for example will still show as NE. 
+** IsHeatOn ** - Tells you if the heating circuits are toggled. 
 
 Set up a destination using the Particle Function *SetTarget* on the [Particle Dashboard](https://console.particle.io/devices), under the device you uploaded the code to. 
 
