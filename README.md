@@ -75,19 +75,32 @@ The diagram shows the allotment of bearing angles to heating pads. The Cardinal 
 <br>
 
 ### Particle Functions
-Warm & Fuzzies is controlled using the functions and variables on [Particle Dashboard](https://console.particle.io/devices).
+Warm & Fuzzies is controlled using the functions and variables on [Particle Dashboard](https://console.particle.io/devices). Find the right device under your account while the particle is turned on and connected to see the variables and functions:
 ![Dashboard](ParticleDashboard.png)
-#### Variables
-**Compass** - Shows you the compass heading in degrees. The compass heading is not 100% accurate (moves between 80-90% accuracy). If you know a solution to get a better compass reading (and I've tried a lot of different compasses breakouts), email me. 
-**Latitude** & **Longitude** - These show the GPS information in Lon and Lat, recieved from the GPS. If they show 0, it means the GPS hasn't found the satelites yet. 
-** Location **  - Shows your GPS Location in Decimal Degrees (easier to work in, especially on Google Maps). 
-** heater ** - Shows the active heater from the heater array. 
-** Bearing ** The compass angle between you and the target location, in degrees.
-** Cardinal** - Shows the cardinal direction between you and the target location. Always shows it with 2 letters, so NNE for example will still show as NE. 
-** IsHeatOn ** - Tells you if the heating circuits are toggled. 
 
-Set up a destination using the Particle Function *SetTarget* on the [Particle Dashboard](https://console.particle.io/devices), under the device you uploaded the code to. 
+#### ***Variables***
+* **Compass** - Shows you the compass heading in degrees. The compass heading is not 100% accurate (moves between 80-90% accuracy). If you know a solution to get a better compass reading (and I've tried a lot of different compasses breakouts), email me. 
+* **Latitude** & **Longitude** - These show the GPS information in Lon and Lat, recieved from the GPS. If they show 0, it means the GPS hasn't found the satelites yet. 
+* ** Location **  - Shows your GPS Location in Decimal Degrees (easier to work in, especially on Google Maps). 
+* ** heater ** - Shows the active heater from the heater array. 
+* ** Bearing ** The compass angle between you and the target location, in degrees.
+* ** Cardinal** - Shows the cardinal direction between you and the target location. Always shows it with 2 letters, so NNE for example will still show as NE. 
+* ** IsHeatOn ** - Tells you if the heating circuits are toggled. 
 
+To update the variables value, click the little `GET` button. 
+
+#### ***Functions***
+All functions will return 0 or 1. To see the values of those who return a meaningful values, see the Variables above. 
+To trigger most of these, send any character on them (other than heat & setTarget which expect specific values).
+
+* **getGPS** - Gets the current GPS location. 
+* **setTarget** - Sets the destination target for navigation. Put in your home location, or any other place of importance using decimal degrees. 
+* **heat** - wanted to turn on and off a heatpad manually? send the heatpad number (2-6) or name (A0, A1, A2) to turn it on. Disconnect the GPS if you want to use this, or the GPS will turn another one based on the angle between you and destination. 
+* **toggleHeat** - Turns off the heating pads temporarily when sent anything but 0. 1 will turn it back on. 
+* **AntennaStat** - Shows the state of the GPS's Antenna (right here on the function). Returns 1, 2, or 3. Based on NMEA codes which is used by the [GPS from adafruit](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf): 1 means antenna short or problem, 2 means internal (not enough to get a signal indoors usally) and 3 means external (which if you bought it, should show). 
+* **getCompass** - This is done automatically, but if you want to get another compass reading, you can send any value to this variable. 
+
+Set up a destination using the Particle Function *SetTarget* on the [Particle Dashboard](https://console.particle.io/devices). This takes a location in Lat & Lon, in Decimal Degrees (DD). To get lat & lon from google maps, see [this guide](http://www.wikihow.com/Get-Latitude-and-Longitude-from-Google-Maps). 
 
 
 ## Code Walkthrough
@@ -116,4 +129,5 @@ I have created this project using the Particle Web IDE and these libraries. They
 ### Dashboard
 
 #### IFTTT Integration
+* Extras - IFTTT Location with phone
 
