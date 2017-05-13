@@ -15,7 +15,7 @@ If you have any questions about the code or the componenets, email me at noam@cc
 
 An [Electron](https://store.particle.io/collections/electron) version coming soon. 
 
-## Components
+# Components
 * Particle Photon
 * **A GPS Breakout** - [Adafruit Ultimate GPS V3](https://www.adafruit.com/product/746)
 * **A Compass Breakout** - [LSM303DLHC](https://www.adafruit.com/product/1120)
@@ -28,7 +28,7 @@ An [Electron](https://store.particle.io/collections/electron) version coming soo
   You can also make your own heating pads or swap the output with something like LEDs or Vibration motors.
 
 
-## Schematic
+# Schematic
 <p align="center">
 <a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/warm_schematic_v4.png" target="blank"><img src="warm_schematic_v4.png" width="98%" align="center"></a>
 </p>
@@ -46,18 +46,18 @@ For the Particle - use a separate power supply (like any USB 5V phone battery), 
 
 You can also create a voltage regulator circuit to split the power supply to a nice clean 3.3v for the Photon, but make sure to test it before, and use a proper heatsink. This project gets pretty hot already! 
 
-## Setup
+# Setup
 These instructions assume you have a basic knowledge of soldering, programming and a familiarity with the Particle IDE environment. If you're just beginning with Particle, I recommend you check out the [Getting Started guide](https://docs.particle.io/guide/getting-started/start/photon/), and build a few basic circuit first.
 If you run into any issue or any question - feel free to email me at noam@cca.edu. 
 
-### Create the circuit
+## Create the circuit
 Either on a breadboard, or on a protoboard. If you're brave - sew the components onto a piece of fabric using conductive thread.
-### Power the Particle
+## Power the Particle
 Make sure the particle device is powered separately (using the USB connector or the vin pin) than the heat pads. The Heatpads need to be powered by the big power supply, but the Particle can only take 5V through the USB, or 3.3v through the VIN pin. 
 Their GNDs need to be connected for switching the heatapd MOSFETs on and off. 
-### Upload the code
+## Upload the code
 Either use the Particle Dev IDE with the entire file set from this github repository, or copy the contents of [src/warm.ino] to the [particle online IDE](https://build.particle.io/), and import the libraries specified below under [libraries](#libraries).
-### Power the heatpads 
+## Power the heatpads 
 Make sure you plug in the power supply for the heatpads last. The project boots up with heat on, so when you plug in the batteries, one of the heatpads should start heating up (there's a default destination programmed). 
 **Test it** - Check carefully with your fingers that:
 * Only one heatpad is heating up
@@ -68,18 +68,21 @@ If any of the above is happening, unplug the batteries and check for shortcircui
 
 There's also a Particle Function you can use to turn the power to the heating circuit off, called *toggleHeat*. Send a zero, or any other character to it to turn the heaters off temporarily.  
 
-## Operation
+# Operation
 The project is meant to be worn. Attach the heating pads to the inside of a shirt, a vest or a jacket, and wire them to the circuit so the pins align to the diagram below:
 
 The diagram shows the allotment of bearing angles to heating pads. The Cardinal Directions (N/E/S/W) are not true magnetic directions, but based on the direction of the individual. "North" is pointing to the front. 
-![Compass](compass_nums2.png)<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/compass_nums2.png" target="blank">Open in a new tab</a>
+<p align="center">
+<img src="compass_nums2.png" width="80%" align="center">
+<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/compass_nums2.png" target="blank">Open in a new tab</a>
+</p>
 <br>
 
-### Particle Functions
+## Particle Functions
 Warm & Fuzzies is controlled using the [Particle Cloud Functions](https://docs.particle.io/reference/firmware/photon/#particle-function-) and [variables](https://docs.particle.io/reference/firmware/photon/#particle-variable-) on [Particle Dashboard](https://console.particle.io/devices). Find the right device under your account while your particle device is turned on and connected, to see the variables and functions:
 ![Dashboard](ParticleDashboard.png)
 
-#### ***Cloud Variables***
+### ***Cloud Variables***
 * **Compass** - Shows you the compass heading in degrees. The compass heading is not 100% accurate (moves between 80-90% accuracy). If you know a solution to get a better compass reading (and I've tried a lot of different compasses breakouts), email me. 
 * **Latitude** & **Longitude** - These show the GPS information in Lon and Lat, recieved from the GPS. If they show 0, it means the GPS hasn't found the satelites yet. 
 * **Location**  - Shows your GPS Location in Decimal Degrees (easier to work in, especially on Google Maps). 
@@ -90,7 +93,7 @@ Warm & Fuzzies is controlled using the [Particle Cloud Functions](https://docs.p
 
 To update the variables value, click the little `GET` button. 
 
-#### *** Cloud Functions***
+### *** Cloud Functions***
 All functions will return 0 or 1. To see the values of those who return a meaningful values, see the Variables above. 
 
 To trigger most of these, send any character on them (other than heat & setTarget which expect specific values).
@@ -108,7 +111,7 @@ To trigger most of these, send any character on them (other than heat & setTarge
 Warm & Fuzzies will start getting warmer towards the direction of your target. When you move around, so would the warm feeling towards that place, or that person. 
 
 # Code Walkthrough
-### Libraries
+## Libraries
 I have created this project using the [Particle Web IDE](https://docs.particle.io/guide/getting-started/build/photon/) and the libraries below. They should all be added automatically with the 'project.properties' file if you use the [Particle Dev IDE desktop software](https://www.particle.io/products/development-tools/particle-desktop-ide), but in case this fails or if you're using the WEB IDE, you will need to add these libraries to your code, using the libraries tab. 
 
 * Adafruit_Sensor (1.0.2)
@@ -119,7 +122,7 @@ I have created this project using the [Particle Web IDE](https://docs.particle.i
 The code is fairly well documented with comments inline. There are a few that are worth calling out here and explaining.
 If you have any questions, feel free to email me. 
 
-### Code Variables
+## Code Variables
 * `heaters` is an array which stores all of the pins associated with the heating pads. If for whatever reason you need to re-assign pins, first update the list here, then also update the turning on of those pins in the functions `heat` and `heatBearing`.
 * `tHeat` - is set to 1 by default, which means that at least one heater will heat up when the project is starting. To stop that from happening automatically, change or toggle it to 0. 
 * `coldPin` - An optional pin for an LED that will turn on when all heaters are off. 
@@ -132,7 +135,7 @@ If you have any questions, feel free to email me.
 There are also a lot of variables, specifically around coordinates that hold the same information in different variables type (floats, longs, ints, and strings) - these are used for different aspects of the system, like sending debug messages to the particle cloud logs, or for sharing with other variables. 
 
 ## Important Functions
-### setup 
+### setup
 Setup (default function, runs at the beginning of the code) calls all the Particle Cloud Cariables & Functions, defines the LED and the heatpad pins, waits, starts the timers and initializes the magnetometer and the GPS.
 It also sets up Serial debugging (9600 bps) and holds the default destination (it will revert to it after every restart). If you wanted to change the default destination, do it in the last line of setup: `setTarget("21.422474, 39.826192");`
 ### loop
@@ -173,13 +176,13 @@ It calculates the difference between the **bearing** (the angle between us and o
 
 If you've changed the heater pins or the placement of the pads, update this function.
 
-## Caveats and Important notes
-### Compass orientation
+# Caveats and Important notes
+## Compass orientation
 Compass orientation is difficult and tricky with Arduino. It uses magnetic field detection and can be affected by strong magnetic forces around you, or the angle of the compass board. If any of you finds a good solid way to get 100% accurate compass readings with a breakout board, please let me know or fork this repository.
-### GPS Antenna 
+## GPS Antenna 
 GPS Breakouts work well outside with the built in antenna, but not so great indoors. I recommend using an active Antenna (link above in [components]) for all of your GPS project. **ESPECIALLY** during the building of the project. It saves so much time when trying to find satellites when you're in the comfort of your own workshop.
 
-## Heating Circuit Tutorial
+# Heating Circuit Tutorial
 <p align="center">
 <img src="MyCircuit_HeatingPad.png" width="50%" align="center">
 <a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/MyCircuit_HeatingPad.png" target="blank">Open in a new tab</a>
@@ -207,3 +210,9 @@ I was using an [FQP30N06L](https://www.sparkfun.com/products/10213), an LOGIC N-
 Read the datasheets, even though they're scary. 
 
 
+# IFTTT Integration
+One of the really nice things about working with particle and using particle cloud exposed functions and variables is that you can easily integrate it with other devices. One easy example is to tie the `setTarget` to someone's phone using an IFTTT Applet with the[{Particle](https://ifttt.com/particle) and the [Button Widget](https://ifttt.com/do_button) service:
+<p align="center">
+<img src="ifttt.png" width="80%" align="center">
+<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/ifttt.png" target="blank">Open in a new tab</a>
+</p>
