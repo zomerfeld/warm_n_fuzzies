@@ -79,7 +79,7 @@ The diagram shows the allotment of bearing angles to heating pads. The Cardinal 
 Warm & Fuzzies is controlled using the functions and variables on [Particle Dashboard](https://console.particle.io/devices). Find the right device under your account while the particle is turned on and connected to see the variables and functions:
 ![Dashboard](ParticleDashboard.png)
 
-#### ***Variables***
+#### ***Cloud Variables***
 * **Compass** - Shows you the compass heading in degrees. The compass heading is not 100% accurate (moves between 80-90% accuracy). If you know a solution to get a better compass reading (and I've tried a lot of different compasses breakouts), email me. 
 * **Latitude** & **Longitude** - These show the GPS information in Lon and Lat, recieved from the GPS. If they show 0, it means the GPS hasn't found the satelites yet. 
 * **Location**  - Shows your GPS Location in Decimal Degrees (easier to work in, especially on Google Maps). 
@@ -90,7 +90,7 @@ Warm & Fuzzies is controlled using the functions and variables on [Particle Dash
 
 To update the variables value, click the little `GET` button. 
 
-#### ***Functions***
+#### *** Cloud Functions***
 All functions will return 0 or 1. To see the values of those who return a meaningful values, see the Variables above. 
 
 To trigger most of these, send any character on them (other than heat & setTarget which expect specific values).
@@ -102,8 +102,7 @@ To trigger most of these, send any character on them (other than heat & setTarge
 * **AntennaStat** - Shows the state of the GPS's Antenna (right here on the function). Returns 1, 2, or 3. Based on NMEA codes which is used by the [GPS from adafruit](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf): 1 means antenna short or problem, 2 means internal (not enough to get a signal indoors usally) and 3 means external (which if you bought it, should show). 
 * **getCompass** - This is done automatically, but if you want to get another compass reading, you can send any value to this variable. 
 
-*** TO BEGIN *** 
-There's a built in target destination in the code. To set up your own, input coordinates in the function *SetTarget* on the [Particle Dashboard].
+***TO BEGIN*** There's a built in target destination in the code. To set up your own, input coordinates in the function *SetTarget* on the [Particle Dashboard].
 (https://console.particle.io/devices). This will take a location in Lat & Lon, Decimal Degrees (DD). To get lat & lon from google maps, see [this guide](http://www.wikihow.com/Get-Latitude-and-Longitude-from-Google-Maps). 
 
 Warm & Fuzzies will start getting warmer towards the direction of your target. When you move around, so would the warm feeling towards that place, or that person. 
@@ -138,9 +137,46 @@ Setup (default function, runs at the beginning of the code) calls all the Partic
 It also sets up Serial debugging (9600 bps) and holds the default destination (it will revert to it after every restart). If you wanted to change the default destination, do it in the last line of setup: `setTarget("21.422474, 39.826192");`
 ### loop
 the loop function (runs on loop on every particle and arduino device), has a millisecond timer inside (the software timers were too early for it), which waits 8 seconds from bootup time, and then triggers [getGPS] every 10 seconds, to get the processed GPS data. 
+### getCompData
+Gets the compass data, normalizes it to a heading (0-360 degrees) and saves it into the variable `compassPublic`.
+### getComp
+Does the same as [getCompData] but also publishes the raw data to Serial, and the heading to Serial and the Particle Cloud log. This one is used less, and mostly for debug. 
+### toggleHeat
+Associated with the cloud function with the same name, toggles heating on or off.
+### heat
+This functions recieves a pin (from the cloud function directly, or from other functions such as [heatBearing]. 
+It checks if heating is set to on or off (using the `tHeat` variable). If it's set to 0, it doesn't heat anything and returns 0. 
+If heating is toggled on:
+It verifies the pin (if the recieved command is not a valid pin, it will shut off all heaters and turn the cold LED on), and after the pin is verified, it heats the associated heatpad and turns off all of the others. 
 
+Returns 1 if the function turned a pin on.
+### antStat
+Checks the status of the Antenna, associated with the cloud function `AntennaStat`.
+Returns a different value for each antenna status and publishes it to the Particle Cloud log. 
+### getGPS
+Parses the raw GPA data (that is already retrieved every ms), converts it from minutes and degrees to decimal degrees, and saves it to global variables: `lat` & `lon`(as floats) and `latPublic` & `lonPublic` (as doubles for publishing to the cloud).
+It also saves the location as a string to the cloud variable `location`.
 
+If there is no GPS data, this function will return a 0 and not 1. 
+### setTarget
+Associated with the cloud function under the same name, this functions accept a string with coordinates in decimal degrees, cleans up the whitespace, splits it to lat & lon, saves them to `targetLat` & `targetLon`, publishes those to the cloud, and triggers [getDirection], [getBearing], and [heatBearing].
+### getDirection
+This function is not very useful honestly. It calculates the cardinal direction (i.e NE, SE, SW or NW) between the target destination and the current GPS location of Warm & Fuzzies.
+## getBearing
+getBearing calculates the angle (in degrees) from current location to target destination based on the GPS data.
+Formulas and calculation based on this [example](https://gis.stackexchange.com/questions/29239/calculate-bearing-between-two-decimal-gps-coordinates) (after painful painful conversion to C++).
+It saves the angle between the two as a the global variable `bearing`.
+## heatBearing
+This functions binds it all up!
+It calculates the difference between the **bearing** (the angle between us and our destination), and the **compass reading**, and derives what part of the body is facing the destination. It then asks the [heat] function to heat up that area using the compass pin diagram above.
 
+If you've changed the heater pins or the placement of the pads, update this function.
+
+## Caveats and Important notes
+### Compass orientation
+Compass orientation is difficult and tricky with Arduino. It uses magnetic field detection and can be affected by strong magnetic forces around you, or the angle of the compass board. If any of you finds a good solid way to get 100% accurate compass readings with a breakout board, please let me know or fork this repository.
+### GPS Antenna 
+This project doesn't 
 
 ## Heating Circuit Tutorial
 <p align="center">
@@ -149,15 +185,10 @@ the loop function (runs on loop on every particle and arduino device), has a mil
 </p>
 <br>
 
-## Caveats and Important notes
-* Compass orientation
-* Compass Math and Such - if you can fix it let me know 
-* GPS Antenna is necessary 
 
 
 
-### Dashboard
 
-#### IFTTT Integration
+### IFTTT Integration
 * Extras - IFTTT Location with phone
 
