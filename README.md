@@ -1,4 +1,4 @@
-# Warm n Fuzzies
+# Warm & Fuzzies
 
 Warm and Fuzzies is an (unnecessary) wearable which **heats up in the direction of your heart's desire** - Home, Friend, Mecca / The Wailing Wall, or the nearest Starbucks.
 <p align="center">
@@ -76,7 +76,7 @@ The diagram shows the allotment of bearing angles to heating pads. The Cardinal 
 <br>
 
 ### Particle Functions
-Warm & Fuzzies is controlled using the functions and variables on [Particle Dashboard](https://console.particle.io/devices). Find the right device under your account while the particle is turned on and connected to see the variables and functions:
+Warm & Fuzzies is controlled using the [Particle Cloud Functions](https://docs.particle.io/reference/firmware/photon/#particle-function-) and [variables](https://docs.particle.io/reference/firmware/photon/#particle-variable-) on [Particle Dashboard](https://console.particle.io/devices). Find the right device under your account while your particle device is turned on and connected, to see the variables and functions:
 ![Dashboard](ParticleDashboard.png)
 
 #### ***Cloud Variables***
@@ -162,12 +162,13 @@ If there is no GPS data, this function will return a 0 and not 1.
 Associated with the cloud function under the same name, this functions accept a string with coordinates in decimal degrees, cleans up the whitespace, splits it to lat & lon, saves them to `targetLat` & `targetLon`, publishes those to the cloud, and triggers [getDirection], [getBearing], and [heatBearing].
 ### getDirection
 This function is not very useful honestly. It calculates the cardinal direction (i.e NE, SE, SW or NW) between the target destination and the current GPS location of Warm & Fuzzies.
-## getBearing
+### getBearing
 getBearing calculates the angle (in degrees) from current location to target destination based on the GPS data.
 Formulas and calculation based on this [example](https://gis.stackexchange.com/questions/29239/calculate-bearing-between-two-decimal-gps-coordinates) (after painful painful conversion to C++).
 It saves the angle between the two as a the global variable `bearing`.
-## heatBearing
+### heatBearing
 This functions binds it all up!
+
 It calculates the difference between the **bearing** (the angle between us and our destination), and the **compass reading**, and derives what part of the body is facing the destination. It then asks the [heat] function to heat up that area using the compass pin diagram above.
 
 If you've changed the heater pins or the placement of the pads, update this function.
@@ -176,7 +177,7 @@ If you've changed the heater pins or the placement of the pads, update this func
 ### Compass orientation
 Compass orientation is difficult and tricky with Arduino. It uses magnetic field detection and can be affected by strong magnetic forces around you, or the angle of the compass board. If any of you finds a good solid way to get 100% accurate compass readings with a breakout board, please let me know or fork this repository.
 ### GPS Antenna 
-This project doesn't 
+GPS Breakouts work well outside with the built in antenna, but not so great indoors. I recommend using an active Antenna (link above in [components]) for all of your GPS project. **ESPECIALLY** during the building of the project. It saves so much time when trying to find satellites when you're in the comfort of your own workshop.
 
 ## Heating Circuit Tutorial
 <p align="center">
@@ -185,10 +186,24 @@ This project doesn't
 </p>
 <br>
 
+So, one of the biggest a-ha moments I had in this project was learning about MOSFETS. For the longeset time, I haven't paid much attention to MOSFETS vs regular Transistors (BJTs). I assumed they're all pretty much the same thing - you push power through one end to switch on power coming from another leg towards gnd. 
+That isn't so simple, and while learning all of that specifically on a heating circuit using high drain batteries, I got a few burns, a melted breadboard and a lot of frustration. 
+So a quick guide to Transistors can be had here: https://learn.sparkfun.com/tutorials/transistors. Another good guide for MOSFETS is here - https://oscarliang.com/how-to-use-mosfet-beginner-tutorial/:
+> * Unlike bipolar transistors, MOSFET is voltage controlled. While BJT is current controlled, the base resistor needs to be carefully calculated according to the amount of current being switched. Not so with a MOSFET. Just apply enough voltage to the gate and the switch operates.
+> * Because they are voltage controlled, MOSFET have a very high input impedance, so just about anything can drive them.
+
+* Figure out if you're using an N Channel MOSFET vs a P channel, and wire it correctly.
+* Don't forget to use a pulldown resistor between the gate and the ground, so your heatpads don't start up unintentionally. 
+
+I was using an [FQP30N06L](https://www.sparkfun.com/products/10213), an LOGIC N-Channel MOSFET.
+[Datasheet](https://cdn.sparkfun.com/datasheets/Components/General/FQP30N06L.pdf)
+
+* Source is connected to ground
+* Gate is connected to a pin (and a pulldown 10K resistor that's connected to GND)
+* Source is connected to the Heatpad, which is connected to the big power source's V+. 
 
 
+...and in short - to save you time, when powering on and off big power things using Arduino or Arduino like boards, MOSFETs are your friends. They require less math, less power to turn on and off, and if you wire them correctly - heat up less. 
+Read the datasheets, even though they're scary. 
 
-
-### IFTTT Integration
-* Extras - IFTTT Location with phone
 
