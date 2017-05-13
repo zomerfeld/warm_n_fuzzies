@@ -191,12 +191,12 @@ GPS Breakouts work well outside with the built in antenna, but not so great indo
 
 So, one of the biggest a-ha moments I had in this project was learning about MOSFETS. For the longest time, I haven't paid much attention to MOSFETS vs regular Transistors (BJTs). I assumed they're all pretty much the same thing - you push power through one end to switch on power coming from another leg towards gnd. 
 That isn't so simple, and while learning all of that specifically on a heating circuit using high drain batteries, I got a few burns, a melted breadboard and a lot of frustration. 
-So a quick guide to Transistors can be had here: https://learn.sparkfun.com/tutorials/transistors. Another good guide for MOSFETS is here - https://oscarliang.com/how-to-use-mosfet-beginner-tutorial/:
+So a quick guide to Transistors can be had here: https://learn.sparkfun.com/tutorials/transistors, a longer [video one](https://vimeo.com/107917397), and a really good guide for MOSFETS is here - https://oscarliang.com/how-to-use-mosfet-beginner-tutorial/:
 > * Unlike bipolar transistors, MOSFET is voltage controlled. While BJT is current controlled, the base resistor needs to be carefully calculated according to the amount of current being switched. Not so with a MOSFET. Just apply enough voltage to the gate and the switch operates.
 > * Because they are voltage controlled, MOSFET have a very high input impedance, so just about anything can drive them.
 
 * Figure out if you're using an N Channel MOSFET vs a P channel, and wire it correctly.
-* Don't forget to use a pulldown resistor between the gate and the ground, so your heat pads don't start heating up unintentionally. 
+* Don't forget to use a pulldown resistor between the gate and the ground, so your heat pads don't start heating up unintentionally. MOSFETs need to be driven down, or they'll stay on HIGH.  
 
 I was using an [FQP30N06L](https://www.sparkfun.com/products/10213), an LOGIC N-Channel MOSFET.
 [Datasheet](https://cdn.sparkfun.com/datasheets/Components/General/FQP30N06L.pdf)
