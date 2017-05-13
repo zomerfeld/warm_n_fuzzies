@@ -205,8 +205,9 @@ I was using an [FQP30N06L](https://www.sparkfun.com/products/10213), an LOGIC N-
 * Gate is connected to a pin (and a pulldown 10K resistor that's connected to GND)
 * Source is connected to the Heatpad, which is connected to the big power source's V+. 
 <p align="center">
-<img src="MOSFET.png" width="50%" align="center">
-</p>s
+<img src="MOSFET.png" width="50%" align="center"><br>
+<small>This is the diagram for this specific model. Check the datasheet for your MOSFET before wiring</small>
+</p>
 
 
 ...and in short - to save you time, when powering on and off big power things using Arduino or Arduino like boards, MOSFETs are your friends. They require less math, less power to turn on and off, and if you wire them correctly - heat up less. 
