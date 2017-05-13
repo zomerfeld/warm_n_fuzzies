@@ -47,10 +47,10 @@ For the Particle - use a separate power supply (like any USB 5V phone battery), 
 You can also create a voltage regulator circuit to split the power supply to a nice clean 3.3v for the Photon, but make sure to test it before, and use a proper heatsink. This project gets pretty hot already! 
 
 # Setup
-These instructions assume you have a basic knowledge of soldering, programming and a familiarity with the Particle IDE environment. If you're just beginning with Particle, I recommend you check out the [Getting Started guide](https://docs.particle.io/guide/getting-started/start/photon/), and build a few basic circuit first.
+These instructions assume you have a basic knowledge of soldering, programming and a familiarity with the Particle IDE environment. If you're just beginning with Particle, I recommend you check out the [Getting Started guide](https://docs.particle.io/guide/getting-started/start/photon/), and build a few basic circuits first.
 If you run into any issue or any question - feel free to email me at noam@cca.edu. 
 
-## Create the circuit
+## Create the Circuit
 Either on a breadboard, or on a protoboard. If you're brave - sew the components onto a piece of fabric using conductive thread.
 ## Power the Particle
 Make sure the particle device is powered separately (using the USB connector or the vin pin) than the heat pads. The Heatpads need to be powered by the big power supply, but the Particle can only take 5V through the USB, or 3.3v through the VIN pin. 
@@ -73,8 +73,7 @@ The project is meant to be worn. Attach the heating pads to the inside of a shir
 
 The diagram shows the allotment of bearing angles to heating pads. The Cardinal Directions (N/E/S/W) are not true magnetic directions, but based on the direction of the individual. "North" is pointing to the front. 
 <p align="center">
-<img src="compass_nums2.png" width="80%" align="center">
-<a href="https://raw.githubusercontent.com/zomerfeld/warm_n_fuzzies/master/compass_nums2.png" target="blank">Open in a new tab</a>
+ <img src="compass_nums2.png" width="80%" align="center">
 </p>
 <br>
 
